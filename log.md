@@ -34,3 +34,11 @@ $ yarn create next-app --example with-electron-typescript splish
 $ yarn run dev
 
 next-env.d.tsとtsconfig.jsonが生成された
+
+### TypeScriptの型チェックを厳格に設定した
+
+```tsconfig.json
+
+"strict": true,
+
+```
