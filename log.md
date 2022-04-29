@@ -1,0 +1,21 @@
+# 作業手順の記録
+
+## 開発環境の整備
+
+## node.js を最新の LTS に更新する
+
+$ sudo n lts
+
+### node.js のバージョンを確認する
+
+$ node -v
+
+## Electron プロジェクトの作成
+
+{【2022年最新版】Electron + Next.js + TypeScript + tailwindCSS でMac/Windows用アプリを作成する【React】}[https://yurupro.cloud/2514/]を参考にした。
+
+### yarnコマンドを実行する
+
+$ yarn create next-app --example with-electron-typescript splish
+
+### package.jsonにnameとversionを追記 productNameを変更
