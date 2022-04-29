@@ -12,10 +12,25 @@ $ node -v
 
 ## Electron プロジェクトの作成
 
-{【2022年最新版】Electron + Next.js + TypeScript + tailwindCSS でMac/Windows用アプリを作成する【React】}[https://yurupro.cloud/2514/]を参考にした。
+{【2022年最新版】Electron + Next.js + TypeScript + tailwindCSSでMac/Windows用アプリを作成する【React】}[https://yurupro.cloud/2514/]を参考にした。
 
 ### yarnコマンドを実行する
 
 $ yarn create next-app --example with-electron-typescript splish
 
 ### package.jsonにnameとversionを追記 productNameを変更
+
+```json
+
+  "name": "splish",
+  "version": "0.0.1",
+  ...
+  "productName": "splish",
+
+```
+
+### Electronを起動
+
+$ yarn run dev
+
+next-env.d.tsとtsconfig.jsonが生成された
