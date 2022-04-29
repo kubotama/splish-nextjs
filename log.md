@@ -59,5 +59,5 @@ next-env.d.tsとtsconfig.jsonが生成された
 
 > $ git push origin main -f
 
--fをつけない（force updatesにしない）とpushがエラーになった。
-GitHubでリポジトリを作成したときに生成したLICENSEファイルが削除された。
+- -fをつけない（force updatesにしない）とpushがエラーになった。
+- GitHubでリポジトリを作成したときに生成したLICENSEファイルが削除された。
