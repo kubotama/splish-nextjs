@@ -42,3 +42,22 @@ next-env.d.tsとtsconfig.jsonが生成された
 "strict": true,
 
 ```
+
+## GitHubにアップロード
+
+### GitHubにリポジトリを作成した
+
+### GitHubをリモートリポジトリとして登録した
+
+> $ git remote add origin git@github.com:kubotama/splish.git
+
+### リモートリポジトリからpullした
+
+> $ git pull origin main
+
+### リモートリポジトリにpushした
+
+> $ git push origin main -f
+
+-fをつけない（force updatesにしない）とpushがエラーになった。
+GitHubでリポジトリを作成したときに生成したLICENSEファイルが削除された。
