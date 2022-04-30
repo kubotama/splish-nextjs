@@ -71,3 +71,67 @@ next-env.d.tsとtsconfig.jsonが生成された
 [\[Next.js\]テスト](https://dev-yakuza.posstree.com/react/nextjs/test/)を参考にした。
 
 $ yarn add --save-dev jest @testing-library/react @testing-library/jest-dom
+
+### jestを設定した
+
+> jest.setup.js
+
+```jest.setup.js
+// Optional: configure or set up a testing framework before each test.
+// If you delete this file, remove `setupFilesAfterEnv` from `jest.config.js`
+
+// Used for __tests__/testing-library.js
+// Learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom/extend-expect'
+```
+
+> jest.config.js
+
+```jest.config.js
+const nextJest = require('next/jest')
+
+const createJestConfig = nextJest({
+  dir: './',
+})
+
+const customJestConfig = {
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  moduleDirectories: ['node_modules', '<rootDir>/'],
+  testEnvironment: 'jest-environment-jsdom',
+}
+
+module.exports = createJestConfig(customJestConfig)
+```
+
+### テストコードを作成した
+
+```tests/index/index.test.tsx
+import { render, screen } from '@testing-library/react'
+import Home from '../../pages/index'
+
+describe('Home', () => {
+  it('renders a heading', () => {
+    const { container } = render(<Home />)
+
+    const heading = screen.getByRole('heading', {
+      name: /welcome to next\.js!/i,
+    })
+
+    expect(heading).toBeInTheDocument()
+
+    expect(container).toMatchSnapshot()
+  })
+})
+```
+
+### テストコマンドを追加した
+
+```package.json
+...
+    "test": "jest",
+...
+```
+
+## テストを実行した
+
+$ yarn test
