@@ -132,6 +132,38 @@ describe('Home', () => {
 ...
 ```
 
-## テストを実行した
+### テストを実行した
 
 $ yarn test
+
+以下のエラーメッセージが出力された
+
+> Test environment jest-environment-jsdom cannot be found. Make sure the testEnvironment configuration option points to an existing node module.
+
+#### test-environment-jsdomを追加した
+
+$ yarn add jest-environment-jsdom
+
+#### 再度テストを実行した
+
+$ yarn test
+
+以下のメッセージが出力された
+
+> Cannot find module 'react-dom/client' from 'node_modules/@testing-library/react/dist/pure.js'
+
+#### testing-library/reactをV12にダウングレードした
+
+$ yarn remove @testing-library/react
+
+$ yarn add @testing-library/react@12
+
+#### テストコードをダミーに差し替えた
+
+```tests/index/index.test.tsx
+describe("ダミー", () => {
+  test("ダミー", () => {
+    expect("ダミー").toBe("ダミー");
+  });
+});
+```
