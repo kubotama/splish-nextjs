@@ -61,3 +61,109 @@ next-env.d.tsとtsconfig.jsonが生成された
 
 - -fをつけない（force updatesにしない）とpushがエラーになった。
 - GitHubでリポジトリを作成したときに生成したLICENSEファイルが削除された。
+
+## jestを導入([#2](https://github.com/kubotama/splish/issues/2))
+
+### \#002-jestブランチを作成した
+
+### jestを導入した
+
+[\[Next.js\]テスト](https://dev-yakuza.posstree.com/react/nextjs/test/)を参考にした。
+
+$ yarn add --save-dev jest @testing-library/react @testing-library/jest-dom
+
+### jestを設定した
+
+> jest.setup.js
+
+```jest.setup.js
+// Optional: configure or set up a testing framework before each test.
+// If you delete this file, remove `setupFilesAfterEnv` from `jest.config.js`
+
+// Used for __tests__/testing-library.js
+// Learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom/extend-expect'
+```
+
+> jest.config.js
+
+```jest.config.js
+const nextJest = require('next/jest')
+
+const createJestConfig = nextJest({
+  dir: './',
+})
+
+const customJestConfig = {
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  moduleDirectories: ['node_modules', '<rootDir>/'],
+  testEnvironment: 'jest-environment-jsdom',
+}
+
+module.exports = createJestConfig(customJestConfig)
+```
+
+### テストコードを作成した
+
+```tests/index/index.test.tsx
+import { render, screen } from '@testing-library/react'
+import Home from "../../renderer/pages/index";
+
+describe('Home', () => {
+  it('renders a heading', () => {
+    const { container } = render(<Home />)
+
+    const heading = screen.getByRole('heading', {
+      name: /welcome to next\.js!/i,
+    })
+
+    expect(heading).toBeInTheDocument()
+
+    expect(container).toMatchSnapshot()
+  })
+})
+```
+
+### テストコマンドを追加した
+
+```package.json
+...
+    "test": "jest",
+...
+```
+
+### テストを実行した
+
+$ yarn test
+
+以下のエラーメッセージが出力された
+
+> Test environment jest-environment-jsdom cannot be found. Make sure the testEnvironment configuration option points to an existing node module.
+
+#### test-environment-jsdomを追加した
+
+$ yarn add jest-environment-jsdom
+
+#### 再度テストを実行した
+
+$ yarn test
+
+以下のメッセージが出力された
+
+> Cannot find module 'react-dom/client' from 'node_modules/@testing-library/react/dist/pure.js'
+
+#### testing-library/reactをV12にダウングレードした
+
+$ yarn remove @testing-library/react
+
+$ yarn add @testing-library/react@12
+
+#### テストコードをダミーに差し替えた
+
+```tests/index/index.test.tsx
+describe("ダミー", () => {
+  test("ダミー", () => {
+    expect("ダミー").toBe("ダミー");
+  });
+});
+```
