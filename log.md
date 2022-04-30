@@ -61,3 +61,13 @@ next-env.d.tsとtsconfig.jsonが生成された
 
 - -fをつけない（force updatesにしない）とpushがエラーになった。
 - GitHubでリポジトリを作成したときに生成したLICENSEファイルが削除された。
+
+## jestを導入([#2](https://github.com/kubotama/splish/issues/2))
+
+### \#002-jestブランチを作成した
+
+### jestを導入した
+
+[\[Next.js\]テスト](https://dev-yakuza.posstree.com/react/nextjs/test/)を参考にした。
+
+$ yarn add --save-dev jest @testing-library/react @testing-library/jest-dom
