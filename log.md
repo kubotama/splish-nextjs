@@ -167,3 +167,40 @@ describe("ダミー", () => {
   });
 });
 ```
+
+## tailwindCSSを導入した
+
+[【2022年最新版】Electron + Next.js + TypeScript + tailwindCSS でMac/Windows用アプリを作成する【React】](https://yurupro.cloud/2514/)を参考にした。
+
+### tailwindCSSを追加した
+
+> $ yarn add tailwindcss@latest postcss@latest autoprefixer@latest
+
+### tailwindCSSの初期化コマンドを実行した
+
+> $ npx tailwindcss init -p
+
+### renderer/pages/_app.jsを作成した
+
+```renderer/pages/_app.js
+import "tailwindcss/tailwind.css";
+
+function MyApp({ Component, pageProps }) {
+    return <Component {...pageProps} />;
+}
+
+export default MyApp;
+```
+
+### renderer/tailwind.config.jsを編集した
+
+```renderer/tailwind.config.js
+module.exports = {
+  content: ["./renderer/pages/**/*.{js,ts,jsx,tsx}",
+    "./renderer/components/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
