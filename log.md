@@ -6,15 +6,15 @@
 
 $ sudo n lts
 
-### node.js のバージョンを確認する
+### node.js のバージョンを確認した
 
 $ node -v
 
 ## Electron プロジェクトの作成
 
-{【2022年最新版】Electron + Next.js + TypeScript + tailwindCSSでMac/Windows用アプリを作成する【React】}[https://yurupro.cloud/2514/]を参考にした。
+[【2022年最新版】Electron + Next.js + TypeScript + tailwindCSSでMac/Windows用アプリを作成する【React】](https://yurupro.cloud/2514/)を参考にした。
 
-### yarnコマンドを実行する
+### yarnコマンドを実行した
 
 $ yarn create next-app --example with-electron-typescript splish
 
@@ -29,7 +29,7 @@ $ yarn create next-app --example with-electron-typescript splish
 
 ```
 
-### Electronを起動
+### Electronを起動した
 
 $ yarn run dev
 
