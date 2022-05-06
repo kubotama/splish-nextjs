@@ -30,7 +30,7 @@ app.on('ready', async () => {
       })
 
   mainWindow.loadURL(url);
-   initWindowMenu(mainWindow);
+  initWindowMenu(mainWindow);
 })
 
 // Quit the app once all windows are closed
