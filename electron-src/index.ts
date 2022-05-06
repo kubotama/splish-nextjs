@@ -42,7 +42,7 @@ ipcMain.on('message', (event: IpcMainEvent, message: any) => {
   setTimeout(() => event.sender.send('message', 'hi from electron'), 500)
 })
 
-function initWindowMenu(window: BrowserWindow) {
+const initWindowMenu = (window: BrowserWindow) => {
   const template = [
     {
       label: "&File",
