@@ -3,7 +3,7 @@ import { join } from 'path'
 import { format } from 'url'
 
 // Packages
-import { BrowserWindow, app, ipcMain, IpcMainEvent } from 'electron'
+import { BrowserWindow, app, ipcMain, IpcMainEvent, Menu } from 'electron'
 import isDev from 'electron-is-dev'
 import prepareNext from 'electron-next'
 
@@ -29,7 +29,8 @@ app.on('ready', async () => {
         slashes: true,
       })
 
-  mainWindow.loadURL(url)
+  mainWindow.loadURL(url);
+   initWindowMenu(mainWindow);
 })
 
 // Quit the app once all windows are closed
@@ -40,3 +41,20 @@ ipcMain.on('message', (event: IpcMainEvent, message: any) => {
   console.log(message)
   setTimeout(() => event.sender.send('message', 'hi from electron'), 500)
 })
+
+function initWindowMenu(window: BrowserWindow) {
+  const template = [
+    {
+      label: "&File",
+      submenu: [
+        {
+          label: "&Quit",
+          accelerator: 'Ctrl+Q',
+          click() { window.close() },
+        },
+      ],
+    },
+  ]
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu)
+}
