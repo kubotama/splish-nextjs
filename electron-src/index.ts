@@ -30,7 +30,7 @@ app.on('ready', async () => {
       })
 
   mainWindow.loadURL(url);
-  initWindowMenu(mainWindow);
+  setupWindowMenu(mainWindow);
 })
 
 // Quit the app once all windows are closed
@@ -42,7 +42,7 @@ ipcMain.on('message', (event: IpcMainEvent, message: any) => {
   setTimeout(() => event.sender.send('message', 'hi from electron'), 500)
 })
 
-const initWindowMenu = (window: BrowserWindow) => {
+const setupWindowMenu = (window: BrowserWindow) => {
   const template = [
     {
       label: "&File",
