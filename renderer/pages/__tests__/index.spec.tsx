@@ -8,15 +8,17 @@ describe("IndexPageコンポーネント", () => {
     expect(getByText("再生")).toBeTruthy();
   });
 
-  test("「再生」ボタンがクリックされた", async () => {
+  test("「再生」ボタンがクリックされるとラベルが「停止」に変わる", async () => {
     const { container, getByText } = render(<IndexPage />);
-    const mockClickButton = (container.onclick = jest.fn());
+
+    // 初期状態: ボタンのラベルは「再生」
+    expect(getByText("再生")).toBeInTheDocument();
+
+    // ボタンをクリック
     const button = getByText("再生");
-
-    expect(mockClickButton).toHaveBeenCalledTimes(0);
-
     await userEvent.click(button);
 
-    expect(mockClickButton).toHaveBeenCalledTimes(1);
+    // クリック後: ボタンのラベルは「停止」
+    expect(getByText("停止")).toBeInTheDocument();
   });
 });
