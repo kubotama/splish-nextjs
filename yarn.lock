@@ -745,6 +745,11 @@
     "@testing-library/dom" "^8.0.0"
     "@types/react-dom" "<18.0.0"
 
+"@testing-library/user-event@^14.2.0":
+  version "14.2.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.2.0.tgz#8293560f8f80a00383d6c755ec3e0b918acb1683"
+  integrity sha512-+hIlG4nJS6ivZrKnOP7OGsDu9Fxmryj9vCl8x0ZINtTJcCHs2zLsYif5GzuRiBF2ck5GZG2aQr7Msg+EHlnYVQ==
+
 "@tootallnate/once@2":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
@@ -4453,11 +4458,6 @@ url-parse-lax@^3.0.0:
   integrity sha1-FrXK/Afb42dsGxmZF3gj1lA6yww=
   dependencies:
     prepend-http "^2.0.0"
-
-user-event@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/user-event/-/user-event-4.0.0.tgz#5e5755cfb51b78a80b31c3db7acdcb9ca393c843"
-  integrity sha512-M2at0vzLqzrwZNBmtPDRyd+1BaRwU9UTG7sc+MrUZmGviR/Ws8tmXxVvfRvuv7TWWIDsLqbrMvoF1sF7DW4y5w==
 
 utf8-byte-length@^1.0.1:
   version "1.0.4"
