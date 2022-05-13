@@ -21,4 +21,19 @@ describe("IndexPageコンポーネント", () => {
     // クリック後: ボタンのラベルは「停止」
     expect(getByText("停止")).toBeInTheDocument();
   });
+
+  test("「再生」ボタンを2回クリックするとラベルが「再生」に戻る", async () => {
+    const { container, getByText } = render(<IndexPage />);
+
+    // 初期状態: ボタンのラベルは「再生」
+    expect(getByText("再生")).toBeInTheDocument();
+
+    // ボタンをクリック
+    const button = getByText("再生");
+    await userEvent.click(button);
+    await userEvent.click(button);
+
+    // クリック後: ボタンのラベルは「停止」
+    expect(getByText("再生")).toBeInTheDocument();
+  });
 });
