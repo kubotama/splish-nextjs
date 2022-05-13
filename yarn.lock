@@ -4454,6 +4454,11 @@ url-parse-lax@^3.0.0:
   dependencies:
     prepend-http "^2.0.0"
 
+user-event@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/user-event/-/user-event-4.0.0.tgz#5e5755cfb51b78a80b31c3db7acdcb9ca393c843"
+  integrity sha512-M2at0vzLqzrwZNBmtPDRyd+1BaRwU9UTG7sc+MrUZmGviR/Ws8tmXxVvfRvuv7TWWIDsLqbrMvoF1sF7DW4y5w==
+
 utf8-byte-length@^1.0.1:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/utf8-byte-length/-/utf8-byte-length-1.0.4.tgz#f45f150c4c66eee968186505ab93fcbb8ad6bf61"
