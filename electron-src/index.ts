@@ -1,6 +1,6 @@
 // Native
 import { join } from 'path'
-import { format } from 'url'
+import { URL } from 'url'
 
 // Packages
 import { BrowserWindow, app, ipcMain, IpcMainEvent, Menu } from 'electron'
@@ -23,11 +23,7 @@ app.on('ready', async () => {
 
   const url = isDev
     ? 'http://localhost:8000/'
-    : format({
-        pathname: join(__dirname, '../renderer/out/index.html'),
-        protocol: 'file:',
-        slashes: true,
-      })
+    : new URL('file:///Users/james/Documents/GitHub/electron-next/renderer/out/index.html').toString()
 
   mainWindow.loadURL(url);
   setupWindowMenu(mainWindow);
