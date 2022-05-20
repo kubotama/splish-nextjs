@@ -9,10 +9,12 @@ describe("起動時の画面", () => {
     expect(getByText("登録するテキスト")).toBeInTheDocument();
     expect(getByPlaceholderText("登録するテキストを入力")).toBeInTheDocument();
     expect(getByText("登録")).toBeInTheDocument();
-
     expect(getByText("登録されたテキスト")).toBeInTheDocument();
     expect(getByTestId("registeredText")).toHaveTextContent("");
+
     expect(getByText("変換")).toBeInTheDocument();
+    expect(getByText("変換されたテキスト")).toBeInTheDocument();
+    expect(getByTestId("ttsedText")).toHaveTextContent("");
 
     expect(getByText("再生")).toBeInTheDocument();
   });
