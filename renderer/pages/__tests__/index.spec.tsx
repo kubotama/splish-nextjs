@@ -1,39 +1,9 @@
 import IndexPage from "../index";
-import { render, fireEvent } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render } from "@testing-library/react";
 
-describe("IndexPageコンポーネント", () => {
-  test("「再生」ボタンが作成された", () => {
+describe("起動時の画面", () => {
+  it("登録ボタンが表示される", () => {
     const { getByText } = render(<IndexPage />);
-    expect(getByText("再生")).toBeTruthy();
-  });
-
-  test("「再生」ボタンがクリックされるとラベルが「停止」に変わる", async () => {
-    const { container, getByText } = render(<IndexPage />);
-
-    // 初期状態: ボタンのラベルは「再生」
-    expect(getByText("再生")).toBeInTheDocument();
-
-    // ボタンをクリック
-    const button = getByText("再生");
-    await userEvent.click(button);
-
-    // クリック後: ボタンのラベルは「停止」
-    expect(getByText("停止")).toBeInTheDocument();
-  });
-
-  test("「再生」ボタンを2回クリックするとラベルが「再生」に戻る", async () => {
-    const { container, getByText } = render(<IndexPage />);
-
-    // 初期状態: ボタンのラベルは「再生」
-    expect(getByText("再生")).toBeInTheDocument();
-
-    // ボタンをクリック
-    const button = getByText("再生");
-    await userEvent.click(button);
-    await userEvent.click(button);
-
-    // クリック後: ボタンのラベルは「停止」
-    expect(getByText("再生")).toBeInTheDocument();
+    expect(getByText("登録")).toBeInTheDocument();
   });
 });
