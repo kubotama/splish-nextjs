@@ -1,6 +1,7 @@
 import React from "react";
 
 import Layout from "../components/Layout";
+import SoundBlock from "../components/SoundBlock";
 
 const IndexPage = () => {
   return (
@@ -22,9 +23,7 @@ const IndexPage = () => {
         <div>変換されたテキスト</div>
         <div data-testid="ttsedText"></div>
 
-        <div>
-          <button disabled>再生</button>
-        </div>
+        <SoundBlock />
       </div>
     </Layout>
   );
