@@ -1,11 +1,25 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, renderHook } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
+import userEvent from "@testing-library/user-event";
 
-import RegisterBlock from "../../components/RegisterBlock";
+import IndexPage from "../index";
+
+import { useRegisterBlock } from "../../hooks/UseRegisterBlock";
 
 describe("登録ブロック", () => {
-  it.todo(
-    "登録するテキストの入力欄(inputText)が空文字でない場合、登録ボタン(registerButton)が有効化されることをテストする。"
-  );
+  it("登録するテキストの入力欄(inputText)が空文字でない場合、登録ボタン(registerButton)が有効化されることをテストする。", async () => {
+    const { getByPlaceholderText, getByText } = render(<IndexPage />);
+
+    expect(getByText("登録")).toBeDisabled();
+
+    await userEvent.type(
+      getByPlaceholderText("登録するテキストを入力"),
+      "テスト"
+    );
+
+    expect(getByText("登録")).toBeEnabled();
+  });
+
   it.todo(
     "登録するテキストの入力欄(inputText)が空文字になったら、登録ボタン(registerButton)が無効化されることをテストする。"
   );
