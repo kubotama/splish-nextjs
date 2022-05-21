@@ -1,49 +1,66 @@
 import IndexPage from "../index";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 describe("起動時の画面", () => {
-  it("起動時に表示される要素をテストする", () => {
-    const { getByText, getByPlaceholderText, getByTestId } = render(
-      <IndexPage />
-    );
+  beforeEach(() => {
+    render(<IndexPage />);
+  });
 
-    // 登録ブロック
-    // テキストの登録ブロックのラベルをテストする
-    const inputLabel = getByText("登録するテキスト");
-    expect(inputLabel).toBeInTheDocument();
+  describe("登録ブロック", () => {
+    it("テキストの登録ブロックのラベルをテストする", () => {
+      // テキストの登録ブロックのラベルをテストする
+      const inputLabel = screen.getByText("登録するテキスト");
+      expect(inputLabel).toBeInTheDocument();
+    });
 
-    // 登録するテキストの入力欄が空文字""であることをテストする
-    const inputTextarea = getByPlaceholderText("登録するテキストを入力");
-    expect(inputTextarea).toHaveValue("");
+    it("登録するテキストの入力欄が空文字であることをテストする", () => {
+      // 登録するテキストの入力欄が空文字""であることをテストする
+      const inputTextarea =
+        screen.getByPlaceholderText("登録するテキストを入力");
+      expect(inputTextarea).toHaveValue("");
+    });
 
-    // 登録ボタンが無効化されていることをテストする
-    const registerButton = getByText("登録");
-    expect(registerButton).toBeDisabled();
+    it("登録ボタンが無効化されていることをテストする", () => {
+      // 登録ボタンが無効化されていることをテストする
+      const registerButton = screen.getByText("登録");
+      expect(registerButton).toBeDisabled();
+    });
 
-    // 登録されたテキストのラベルをテストする
-    const regiteredLabel = getByText("登録されたテキスト");
-    expect(regiteredLabel).toBeInTheDocument();
+    it("登録されたテキストのラベルをテストする", () => {
+      // 登録されたテキストのラベルをテストする
+      const regiteredLabel = screen.getByText("登録されたテキスト");
+      expect(regiteredLabel).toBeInTheDocument();
+    });
 
-    //登録されたテキストが空文字""であることをテストする
-    const registeredText = getByTestId("registeredText");
-    expect(registeredText).toHaveTextContent("");
+    it("登録されたテキストが空文字であることをテストする", () => {
+      //登録されたテキストが空文字""であることをテストする
+      const registeredText = screen.getByTestId("registeredText");
+      expect(registeredText).toHaveTextContent("");
+    });
+  });
 
-    // 変換ブロック
-    // 変換ボタンが無効化されていることをテストする
-    const ttsButton = getByText("変換");
-    expect(ttsButton).toBeDisabled();
+  describe("変換ブロック", () => {
+    it("変換ボタンが無効化されていることをテストする", () => {
+      const ttsButton = screen.getByText("変換");
+      expect(ttsButton).toBeDisabled();
+    });
 
-    // 変換されたテキストのラベルをテストする
-    const ttsedLabel = getByText("変換されたテキスト");
-    expect(ttsedLabel).toBeInTheDocument();
+    it("変換されたテキストのラベルをテストする", () => {
+      const ttsedLabel = screen.getByText("変換されたテキスト");
+      expect(ttsedLabel).toBeInTheDocument();
+    });
 
-    // 変換されたテキストが空文字""であることをテストする
-    const ttsedText = getByTestId("ttsedText");
-    expect(ttsedText).toHaveTextContent("");
+    it("変換されたテキストが空文字であることをテストする", () => {
+      // 変換されたテキストが空文字""であることをテストする
+      const ttsedText = screen.getByTestId("ttsedText");
+      expect(ttsedText).toHaveTextContent("");
+    });
+  });
 
-    // 再生ブロック
-    // 再生ボタンが無効化されていることをテストする
-    const playButton = getByText("再生");
-    expect(playButton).toBeDisabled();
+  describe("再生ブロック", () => {
+    it("再生ボタンが無効化されていることをテストする", () => {
+      const playButton = screen.getByText("再生");
+      expect(playButton).toBeDisabled();
+    });
   });
 });
