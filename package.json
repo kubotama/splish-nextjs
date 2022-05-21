@@ -13,6 +13,7 @@
     "pack-app": "npm run build && electron-builder --dir",
     "dist": "npm run build && electron-builder",
     "test": "jest",
+    "coverage": "jest --coverage",
     "type-check": "tsc -p ./renderer/tsconfig.json && tsc -p ./electron-src/tsconfig.json"
   },
   "dependencies": {
