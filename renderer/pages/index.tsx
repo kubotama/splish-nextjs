@@ -1,6 +1,7 @@
 import React from "react";
 
 import Layout from "../components/Layout";
+import TtsBlock from "../components/TtsBlock";
 import SoundBlock from "../components/SoundBlock";
 
 const IndexPage = () => {
@@ -17,11 +18,7 @@ const IndexPage = () => {
         <div>登録されたテキスト</div>
         <div data-testid="registeredText"></div>
 
-        <div>
-          <button disabled>変換</button>
-        </div>
-        <div>変換されたテキスト</div>
-        <div data-testid="ttsedText"></div>
+        <TtsBlock />
 
         <SoundBlock />
       </div>
