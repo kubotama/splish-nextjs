@@ -20,9 +20,21 @@ describe("登録ブロック", () => {
     expect(getByText("登録")).toBeEnabled();
   });
 
-  it.todo(
-    "登録するテキストの入力欄(inputText)が空文字になったら、登録ボタン(registerButton)が無効化されることをテストする。"
-  );
+  it("登録するテキストの入力欄(inputText)が空文字になったら、登録ボタン(registerButton)が無効化されることをテストする。", async () => {
+    const { getByPlaceholderText, getByText } = render(<IndexPage />);
+
+    await userEvent.type(
+      getByPlaceholderText("登録するテキストを入力"),
+      "テスト"
+    );
+
+    expect(getByText("登録")).toBeEnabled();
+
+    await userEvent.clear(getByPlaceholderText("登録するテキストを入力"));
+
+    expect(getByText("登録")).toBeDisabled();
+  });
+
   it.todo(
     "登録ボタン(registerButton)がクリックされたら、登録されたテキスト(registeredText)に、登録するテキストの入力欄(inputText)に入力されていた文字列が設定されることをテストする。"
   );
