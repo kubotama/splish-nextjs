@@ -9,11 +9,7 @@ export const useRegisterBlock = () => {
     target: { value: React.SetStateAction<string> };
   }) => {
     setInputTextarea(e.target.value);
-    if (e.target.value !== "") {
-      setRegisterButtonDisabled(false);
-    } else {
-      setRegisterButtonDisabled(true);
-    }
+    setRegisterButtonDisabled(e.target.value !== "" ? false : true);
   };
 
   return {
