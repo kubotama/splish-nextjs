@@ -9,13 +9,19 @@ export const useRegisterBlock = () => {
     target: { value: React.SetStateAction<string> };
   }) => {
     setInputTextarea(e.target.value);
+
     setRegisterButtonDisabled(e.target.value !== "" ? false : true);
+  };
+
+  const onClickRegisterButton = () => {
+    setRegisteredText(inputTextarea);
   };
 
   return {
     inputTextarea,
     registeredText,
     registerButtonDisabled,
+    onClickRegisterButton,
     onChangeInputrTextarea,
   };
 };

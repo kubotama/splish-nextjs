@@ -35,7 +35,18 @@ describe("登録ブロック", () => {
     expect(getByText("登録")).toBeDisabled();
   });
 
-  it.todo(
-    "登録ボタン(registerButton)がクリックされたら、登録されたテキスト(registeredText)に、登録するテキストの入力欄(inputText)に入力されていた文字列が設定されることをテストする。"
-  );
+  it("登録ボタン(registerButton)がクリックされたら、登録されたテキスト(registeredText)に、登録するテキストの入力欄(inputText)に入力されていた文字列が設定されることをテストする。", async () => {
+    const { getByPlaceholderText, getByText, getByTestId } = render(
+      <IndexPage />
+    );
+
+    await userEvent.type(
+      getByPlaceholderText("登録するテキストを入力"),
+      "テスト"
+    );
+
+    await userEvent.click(getByText("登録"));
+
+    expect(getByTestId("registeredText")).toHaveTextContent("テスト");
+  });
 });

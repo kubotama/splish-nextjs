@@ -10,6 +10,7 @@ const IndexPage = () => {
     inputTextarea,
     registeredText,
     registerButtonDisabled,
+    onClickRegisterButton,
     onChangeInputrTextarea,
   } = useRegisterBlock();
 
@@ -26,7 +27,12 @@ const IndexPage = () => {
             />
           </div>
           <div>
-            <button disabled={registerButtonDisabled}>登録</button>
+            <button
+              disabled={registerButtonDisabled}
+              onClick={onClickRegisterButton}
+            >
+              登録
+            </button>
           </div>
           <div>登録されたテキスト</div>
           <div data-testid="registeredText">{registeredText}</div>
