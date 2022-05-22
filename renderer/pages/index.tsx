@@ -10,6 +10,7 @@ const IndexPage = () => {
     inputTextarea,
     registeredText,
     registerButtonDisabled,
+    ttsButtonDisabled,
     onClickRegisterButton,
     onChangeInputrTextarea,
   } = useRegisterBlock();
@@ -38,7 +39,7 @@ const IndexPage = () => {
           <div data-testid="registeredText">{registeredText}</div>
         </div>
 
-        <TtsBlock />
+        <TtsBlock ttsButtonDisabled={ttsButtonDisabled} />
 
         <SoundBlock />
       </div>
