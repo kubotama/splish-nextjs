@@ -39,7 +39,10 @@ const IndexPage = () => {
           <div data-testid="registeredText">{registeredText}</div>
         </div>
 
-        <TtsBlock ttsButtonDisabled={ttsButtonDisabled} />
+        <TtsBlock
+          ttsButtonDisabled={ttsButtonDisabled}
+          registeredText={registeredText}
+        />
 
         <SoundBlock />
       </div>

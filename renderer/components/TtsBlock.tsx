@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
-const TtsBlock: React.FC<{ ttsButtonDisabled: boolean }> = ({
-  ttsButtonDisabled,
-}) => {
+import { useTtsBlock } from "../hooks/UseTtsBlock";
+
+const TtsBlock: React.FC<{
+  ttsButtonDisabled: boolean;
+  registeredText: string;
+}> = ({ ttsButtonDisabled, registeredText }) => {
+  const { ttsedText, onClickTtsButton } = useTtsBlock(registeredText);
+
   return (
     <div>
       <div>
-        <button disabled={ttsButtonDisabled}>変換</button>
+        <button disabled={ttsButtonDisabled} onClick={onClickTtsButton}>
+          変換
+        </button>
       </div>
       <div>変換されたテキスト</div>
-      <div data-testid="ttsedText"></div>
+      <div data-testid="ttsedText">{ttsedText}</div>
     </div>
   );
 };
