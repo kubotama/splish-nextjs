@@ -21,6 +21,7 @@ const IndexPage = () => {
 
   return (
     <Layout title="Home | splish (speak and listen, shadow)">
+      {/* 登録ブロック */}
       <div>
         <div>
           <div>登録するテキスト</div>
@@ -42,6 +43,8 @@ const IndexPage = () => {
           <div>登録されたテキスト</div>
           <div data-testid="registeredText">{registeredText}</div>
         </div>
+
+        {/* 変換ブロック */}
         <div>
           <div>
             <button disabled={ttsButtonDisabled} onClick={onClickTtsButton}>
@@ -51,6 +54,8 @@ const IndexPage = () => {
           <div>変換されたテキスト</div>
           <div data-testid="ttsedText">{ttsedText}</div>
         </div>
+
+        {/* 再生ブロック */}
         <div>
           <button disabled={soundButtonDisabled}>再生</button>
         </div>
