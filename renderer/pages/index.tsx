@@ -5,6 +5,7 @@ import Layout from "../components/Layout";
 // import SoundBlock from "../components/SoundBlock";
 import { useRegisterBlock } from "../hooks/UseRegisterBlock";
 import { useTtsBlock } from "../hooks/UseTtsBlock";
+import { useSoundBlock } from "../hooks/UseSoundBlock";
 
 const IndexPage = () => {
   const {
@@ -18,6 +19,8 @@ const IndexPage = () => {
 
   const { ttsedText, soundButtonDisabled, onClickTtsButton } =
     useTtsBlock(registeredText);
+
+  const { soundButtonLabel, onClickSoundButton } = useSoundBlock();
 
   return (
     <Layout title="Home | splish (speak and listen, shadow)">
@@ -57,7 +60,9 @@ const IndexPage = () => {
 
         {/* 再生ブロック */}
         <div>
-          <button disabled={soundButtonDisabled}>再生</button>
+          <button disabled={soundButtonDisabled} onClick={onClickSoundButton}>
+            {soundButtonLabel}
+          </button>
         </div>
       </div>
     </Layout>
