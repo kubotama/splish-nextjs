@@ -1,9 +1,11 @@
 import React from "react";
 
 import Layout from "../components/Layout";
-import TtsBlock from "../components/TtsBlock";
-import SoundBlock from "../components/SoundBlock";
+// import TtsBlock from "../components/TtsBlock";
+// import SoundBlock from "../components/SoundBlock";
 import { useRegisterBlock } from "../hooks/UseRegisterBlock";
+import { useTtsBlock } from "../hooks/UseTtsBlock";
+import { useSoundBlock } from "../hooks/UseSoundBlock";
 
 const IndexPage = () => {
   const {
@@ -15,8 +17,14 @@ const IndexPage = () => {
     onChangeInputrTextarea,
   } = useRegisterBlock();
 
+  const { ttsedText, soundButtonDisabled, onClickTtsButton } =
+    useTtsBlock(registeredText);
+
+  const { soundButtonLabel, onClickSoundButton } = useSoundBlock();
+
   return (
     <Layout title="Home | splish (speak and listen, shadow)">
+      {/* 登録ブロック */}
       <div>
         <div>
           <div>登録するテキスト</div>
@@ -39,12 +47,23 @@ const IndexPage = () => {
           <div data-testid="registeredText">{registeredText}</div>
         </div>
 
-        <TtsBlock
-          ttsButtonDisabled={ttsButtonDisabled}
-          registeredText={registeredText}
-        />
+        {/* 変換ブロック */}
+        <div>
+          <div>
+            <button disabled={ttsButtonDisabled} onClick={onClickTtsButton}>
+              変換
+            </button>
+          </div>
+          <div>変換されたテキスト</div>
+          <div data-testid="ttsedText">{ttsedText}</div>
+        </div>
 
-        <SoundBlock />
+        {/* 再生ブロック */}
+        <div>
+          <button disabled={soundButtonDisabled} onClick={onClickSoundButton}>
+            {soundButtonLabel}
+          </button>
+        </div>
       </div>
     </Layout>
   );
