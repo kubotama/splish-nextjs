@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+
+// import ReactPlayer from "react-player";
+import dynamic from "next/dynamic";
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 import Layout from "../components/Layout";
 // import TtsBlock from "../components/TtsBlock";
