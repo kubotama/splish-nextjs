@@ -2,7 +2,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ipcRenderer, IpcRenderer, contextBridge } from "electron";
 
-// import { IPCKeys } from "./constants";
+import { IPCKeys } from "./constants";
 
 declare global {
   // namespace NodeJS {
@@ -21,5 +21,5 @@ process.once("loaded", () => {
 
 contextBridge.exposeInMainWorld("splish", {
   testMessage: async (): Promise<string> =>
-    await ipcRenderer.invoke("testMessage"),
+    await ipcRenderer.invoke(IPCKeys.TEST_MESSAGE),
 });

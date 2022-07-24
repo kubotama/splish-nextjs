@@ -2,10 +2,7 @@
 import { join } from "path";
 import { URL } from "url";
 
-// import { Howl } from "howler";
-
 import fs from "fs";
-// import { Buffer } from "node:buffer";
 
 // Packages
 import { BrowserWindow, app, ipcMain, Menu } from "electron";
@@ -39,16 +36,14 @@ app.on("ready", async () => {
 
   ipcMain.handle(IPCKeys.TEST_MESSAGE, () => {
     const filename = "./output.mp3";
-    let buffer;
     try {
-      buffer = fs.readFileSync(filename);
+      const buffer = fs.readFileSync(filename);
       console.log("exist");
+      return buffer;
     } catch (error) {
       console.log("not exist");
+      return;
     }
-
-    return buffer;
-    // return "テキスト";
   });
 });
 
