@@ -22,8 +22,12 @@ const IndexPage = () => {
 
   const { soundButtonLabel, onClickSoundButton } = useSoundBlock();
 
+  const [textLabel, setTextLabel] = useState("");
+
   const onClickTest = async () => {
-    window.splish.textToSpeech().then(async (buffer) => {
+    const text = "Just now is " + new Date().toISOString();
+    setTextLabel(text);
+    window.splish.textToSpeech(text).then(async (buffer) => {
       const ctx = new AudioContext();
       const source = ctx.createBufferSource();
       source.buffer = await ctx.decodeAudioData(buffer.buffer);
@@ -74,7 +78,7 @@ const IndexPage = () => {
             {soundButtonLabel}
           </button>
         </div>
-
+        <div>Text: {textLabel}</div>
         <button onClick={onClickTest}>テスト</button>
       </div>
     </Layout>

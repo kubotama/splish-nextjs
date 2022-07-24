@@ -37,31 +37,33 @@ app.on("ready", async () => {
   mainWindow.loadURL(url);
   setupWindowMenu(mainWindow);
 
-  ipcMain.handle(IPCKeys.TEXT_TO_SPEECH, async () => {
-    const filename = "./output.mp3";
-    const client = new TextToSpeechClient();
-    const text = "This is sample speech. This is sample speech.";
+  ipcMain.handle(
+    IPCKeys.TEXT_TO_SPEECH,
+    async (_event: Electron.IpcMainInvokeEvent, text: string) => {
+      const filename = "./output.mp3";
+      const client = new TextToSpeechClient();
 
-    const request: google.cloud.texttospeech.v1.ISynthesizeSpeechRequest = {
-      input: { text: text },
-      voice: {
-        languageCode: "en-US",
-        ssmlGender: "NEUTRAL",
-        name: "en-US-Standard-J",
-      },
-      audioConfig: {
-        audioEncoding: "MP3",
-        effectsProfileId: ["headphone-class-device"],
-      },
-    };
+      const request: google.cloud.texttospeech.v1.ISynthesizeSpeechRequest = {
+        input: { text: text },
+        voice: {
+          languageCode: "en-US",
+          ssmlGender: "NEUTRAL",
+          name: "en-US-Standard-J",
+        },
+        audioConfig: {
+          audioEncoding: "MP3",
+          effectsProfileId: ["headphone-class-device"],
+        },
+      };
 
-    const [response] = await client.synthesizeSpeech(request);
-    if (response.audioContent) {
-      fs.writeFileSync(filename, response.audioContent);
-      const buffer = response.audioContent;
-      return buffer;
+      const [response] = await client.synthesizeSpeech(request);
+      if (response.audioContent) {
+        fs.writeFileSync(filename, response.audioContent);
+        const buffer = response.audioContent;
+        return buffer;
+      }
     }
-  });
+  );
 });
 
 // Quit the app once all windows are closed
