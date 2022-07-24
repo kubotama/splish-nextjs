@@ -1,8 +1,10 @@
 import React from "react";
 
-const SoundBlock = () => (
+const SoundBlock: React.FC<{ soundButtonDisabled: boolean }> = ({
+  soundButtonDisabled,
+}) => (
   <div>
-    <button disabled>再生</button>
+    <button disabled={soundButtonDisabled}>再生</button>
   </div>
 );
 

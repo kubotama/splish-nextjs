@@ -2,6 +2,8 @@
 import { join } from 'path'
 import { URL } from 'url'
 
+import { Howl } from "howler";
+
 // Packages
 import { BrowserWindow, app, ipcMain, IpcMainEvent, Menu } from 'electron'
 import isDev from 'electron-is-dev'
@@ -16,7 +18,7 @@ app.on('ready', async () => {
     height: 600,
     webPreferences: {
       nodeIntegration: false,
-      contextIsolation: false,
+      contextIsolation: true,
       preload: join(__dirname, 'preload.js'),
     },
   })
@@ -32,10 +34,25 @@ app.on('ready', async () => {
 // Quit the app once all windows are closed
 app.on('window-all-closed', app.quit)
 
-// listen the channel `message` and resend the received message to the renderer process
-ipcMain.on('message', (event: IpcMainEvent, message: any) => {
-  console.log(message)
-  setTimeout(() => event.sender.send('message', 'hi from electron'), 500)
+// // listen the channel `message` and resend the received message to the renderer process
+// ipcMain.on('message', (event: IpcMainEvent, message: any) => {
+//   console.log(message)
+//   setTimeout(() => event.sender.send('message', 'hi from electron'), 500)
+// })
+
+ipcMain.on("play", (event: IpcMainEvent, filename: string) => {
+  console.log(__dirname);
+  console.log(filename);
+  const howler = new Howl({
+    src: [filename],
+    onloaderror: (id: number, err: any) => {
+      console.log(id+ " " + filename + err);
+    },
+    onend: () => {
+      event.sender.send("playEnd", "");
+    },
+  });
+  howler.play();
 })
 
 const setupWindowMenu = (window: BrowserWindow) => {
