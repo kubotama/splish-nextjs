@@ -20,6 +20,6 @@ process.once("loaded", () => {
 });
 
 contextBridge.exposeInMainWorld("splish", {
-  testMessage: async (): Promise<Buffer> =>
-    await ipcRenderer.invoke(IPCKeys.TEST_MESSAGE),
+  textToSpeech: async (): Promise<Buffer> =>
+    await ipcRenderer.invoke(IPCKeys.TEXT_TO_SPEECH),
 });

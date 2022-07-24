@@ -37,7 +37,7 @@ app.on("ready", async () => {
   mainWindow.loadURL(url);
   setupWindowMenu(mainWindow);
 
-  ipcMain.handle(IPCKeys.TEST_MESSAGE, async () => {
+  ipcMain.handle(IPCKeys.TEXT_TO_SPEECH, async () => {
     const filename = "./output.mp3";
     const client = new TextToSpeechClient();
     const text = "This is sample speech. This is sample speech.";

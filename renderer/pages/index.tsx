@@ -23,7 +23,7 @@ const IndexPage = () => {
   const { soundButtonLabel, onClickSoundButton } = useSoundBlock();
 
   const onClickTest = async () => {
-    window.splish.testMessage().then(async (buffer) => {
+    window.splish.textToSpeech().then(async (buffer) => {
       const ctx = new AudioContext();
       const source = ctx.createBufferSource();
       source.buffer = await ctx.decodeAudioData(buffer.buffer);
