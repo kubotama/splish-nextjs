@@ -22,6 +22,16 @@ const IndexPage = () => {
 
   const { soundButtonLabel, onClickSoundButton } = useSoundBlock();
 
+  const onClickTest = async () => {
+    window.splish.testMessage().then(async (buffer) => {
+      const ctx = new AudioContext();
+      const source = ctx.createBufferSource();
+      source.buffer = await ctx.decodeAudioData(buffer.buffer);
+      source.connect(ctx.destination);
+      source.start();
+    });
+  };
+
   return (
     <Layout title="Home | splish (speak and listen, shadow)">
       {/* 登録ブロック */}
@@ -64,6 +74,8 @@ const IndexPage = () => {
             {soundButtonLabel}
           </button>
         </div>
+
+        <button onClick={onClickTest}>テスト</button>
       </div>
     </Layout>
   );

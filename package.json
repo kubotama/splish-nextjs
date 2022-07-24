@@ -4,6 +4,7 @@
   "private": true,
   "main": "main/index.js",
   "productName": "splish",
+  "license": "MIT",
   "scripts": {
     "clean": "rimraf dist main renderer/out renderer/.next",
     "dev": "npm run build-electron && electron .",
