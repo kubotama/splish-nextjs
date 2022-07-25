@@ -1,3 +1,3 @@
 export const IPCKeys = {
-  TEST_MESSAGE: "testMessage",
+  TEXT_TO_SPEECH: "textToSpeech",
 } as const;

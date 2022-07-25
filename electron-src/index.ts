@@ -4,6 +4,9 @@ import { URL } from "url";
 
 import fs from "fs";
 
+import { TextToSpeechClient } from "@google-cloud/text-to-speech";
+import { google } from "@google-cloud/text-to-speech/build/protos/protos";
+
 // Packages
 import { BrowserWindow, app, ipcMain, Menu } from "electron";
 import isDev from "electron-is-dev";
@@ -34,42 +37,37 @@ app.on("ready", async () => {
   mainWindow.loadURL(url);
   setupWindowMenu(mainWindow);
 
-  ipcMain.handle(IPCKeys.TEST_MESSAGE, () => {
-    const filename = "./output.mp3";
-    try {
-      const buffer = fs.readFileSync(filename);
-      console.log("exist");
-      return buffer;
-    } catch (error) {
-      console.log("not exist");
-      return;
+  ipcMain.handle(
+    IPCKeys.TEXT_TO_SPEECH,
+    async (_event: Electron.IpcMainInvokeEvent, text: string) => {
+      const filename = "./output.mp3";
+      const client = new TextToSpeechClient();
+
+      const request: google.cloud.texttospeech.v1.ISynthesizeSpeechRequest = {
+        input: { text: text },
+        voice: {
+          languageCode: "en-US",
+          ssmlGender: "NEUTRAL",
+          name: "en-US-Standard-J",
+        },
+        audioConfig: {
+          audioEncoding: "MP3",
+          effectsProfileId: ["headphone-class-device"],
+        },
+      };
+
+      const [response] = await client.synthesizeSpeech(request);
+      if (response.audioContent) {
+        fs.writeFileSync(filename, response.audioContent);
+        const buffer = response.audioContent;
+        return buffer;
+      }
     }
-  });
+  );
 });
 
 // Quit the app once all windows are closed
 app.on("window-all-closed", app.quit);
-
-// // listen the channel `message` and resend the received message to the renderer process
-// ipcMain.on("testMessage", () => {
-//   console.log("test message");
-//   return "filename";
-// });
-
-// ipcMain.on("play", (event: IpcMainEvent, filename: string) => {
-//   console.log(__dirname);
-//   console.log(filename);
-//   const howler = new Howl({
-//     src: [filename],
-//     onloaderror: (id: number, err: any) => {
-//       console.log(id + " " + filename + err);
-//     },
-//     onend: () => {
-//       event.sender.send("playEnd", "");
-//     },
-//   });
-//   howler.play();
-// });
 
 const setupWindowMenu = (window: BrowserWindow) => {
   const template = [
